@@ -1,6 +1,5 @@
 #include<iostream>
 #include<string>
-#include<sstream>
 #include<fstream>
 
 using namespace std;
@@ -12,7 +11,7 @@ int main() {
     // User Interaction
     ///////////////////
     string field_to_remove;
-    cout << "\nThis program will clean up and process your 'export.bib \n";
+    cout << "\nThis program will clean up and process your 'export.bib' \n";
     cout << "file into ";
     cout << "one that is much easier to import into LaTeX.\n" << endl;
     cout << "Please enter the name of any field you wish to remove. If \n";
@@ -66,18 +65,15 @@ int main() {
     }
     input_file.close();
 
+    
     ////////////////////
     // Clean up new file
     ////////////////////
-
-    // Remove too much whitespace between entries
-    const int NUM_PROBLEMS = 6;
+    const int NUM_PROBLEMS = 6; // Change this number as needed
     string bad_sub[NUM_PROBLEMS] = {"\n\n\n", "},\n}", "= \t {", " ={", " &",
                                     " $"};
-
     string better_sub[NUM_PROBLEMS] = {"\n\n", "}\n}", "={", "={", " \\&",
                                        " \\$"};
-
 
     for (int i = 0; i < NUM_PROBLEMS; i++) {
         int pos_prob = newfile.find(bad_sub[i]);
