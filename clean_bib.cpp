@@ -11,7 +11,7 @@ int main() {
     // User Interaction
     ///////////////////
     string field_to_remove;
-    cout << "\nThis program will clean up and process your 'export.bib' \n";
+    cout << "\nThis program will clean up and process your 'export.bib \n";
     cout << "file into ";
     cout << "one that is much easier to import into LaTeX.\n" << endl;
     cout << "Please enter the name of any field you wish to remove. If \n";
@@ -39,8 +39,7 @@ int main() {
     int counter = 1;
 
     while (getline(input_file, line)) {
-        // Adds space between entries for readability
-        // and removes long RefWorks ID
+        // Adds space between entries for readability and removes RefWorks ID
         if (line[0] == '@' &&
             line.find("RefWorks") != string::npos) {
             line = line.substr(0, line.find('{') + 1);
@@ -55,17 +54,12 @@ int main() {
             if (field_name.back() == ' ') field_name.pop_back();
         }
 
-        // Copies all lines (except for the one requested
-        if (field_name != field_to_remove) {
-            newfile = newfile + line + "\n";
-            // newfile = newfile.append(line);
-            // newfile = newfile.append('\n');
-        }
+        // Copies all lines (except for the field requested)
+        if (field_name != field_to_remove) newfile += line + "\n";
 
     }
     input_file.close();
 
-    
     ////////////////////
     // Clean up new file
     ////////////////////
